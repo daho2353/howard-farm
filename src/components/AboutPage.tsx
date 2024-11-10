@@ -23,16 +23,11 @@ const AboutPage = () => {
             <ImageSlider slides={slides} />
         </div>
         <div>
-        <p> about us </p>
-        <p> wow we are so cool, we have a green house</p>
-        <p> we use the eggs from our chickens as well</p>
-        <p> we use spices from all around the world and recipe's from generations of cooks</p>
+        <h2> about us </h2>
+        <p> Welcome to Howard Farm! Since 2022, we've been dedicated to growing fresh, quality produce and sharing the flavors of our heritage with our community. At Howard Farm, we not only cultivate our own fruits, vegetables, and herbs, but we also use them to create delicious, homemade recipes inspired by a lineage of skilled chefs and cooks in our family. Each product we offer is crafted with care, combining generations of culinary expertise with the freshest ingredients straight from our fields. Join us in celebrating the art of homegrown food and family-inspired cooking!</p>
         </div>    
     </div>
       )
-
-
-
 }
 
 export default AboutPage;
