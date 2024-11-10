@@ -8,11 +8,7 @@ interface Props {
 }
 
 const ImageSlider: React.FC<Props> = ({slides}) => {
-    const [CurrentIndex, setCurrentIndex] = useState(0);
-
-    const slideStyles = {
-        backgroundImage: `url(${slides[CurrentIndex].url})`,
-    };
+    const [CurrentIndex, setCurrentIndex] = useState<number>(0);
 
       const goToPrevious = () => {
         const isFirstSlide = CurrentIndex === 0
@@ -30,7 +26,9 @@ const ImageSlider: React.FC<Props> = ({slides}) => {
     <div className='slider'>
         <div className='left-arrow' onClick={goToPrevious}> ❰</div>
         <div className='right-arrow' onClick={goToNext}> ❱</div>
-        <div style={slideStyles} className='slide'></div>
+        <div className='slide'>
+          <img src={slides[CurrentIndex].url} />
+        </div>
     </div>
     );
 };

@@ -1,35 +1,53 @@
 .slider{
-    min-height: "850px";
-    height: "100%";
-    position:"relative";
+    width:90vw;
+    height: 100vh;
+    min-height: 850px;
+    max-height: 900px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
 .slide{
-    width: "100%";
-    height: "100%";
-    border-radius: "10px";
-    background-position: "center";
-    background-size: "cover";
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    background-size: 100% 100%;
+}
+
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit : fill;
 }
 
 .right-arrow{
-    position: "absolute";
-    top: "50%";
-    transform: "translate(0, -50%)";
-    right: "32px";
-    font-size: "45px";
-    color: "#fff";
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 32px;
+    font-size: 45px;
+    color: #fff;
     z-index: 1;
-    cursor: "pointer";
+    cursor: pointer;
 }
 
 .left-arrow{
-    position: "absolute";
-    top: "50%";
-    transform: "translate(0, -50%)";
-    left: "32px";
-    font-size: "45px";
-    color: "#fff";
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 32px;
+    font-size: 45px;
+    color: #fff;
     z-index: 1;
-    cursor: "pointer";
+    cursor: pointer;
 }
+

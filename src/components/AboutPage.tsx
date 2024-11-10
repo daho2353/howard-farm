@@ -20,7 +20,7 @@ const AboutPage = () => {
       return (
         <div> 
         <div className="slider-container">
-        <ImageSlider slides={slides} />
+            <ImageSlider slides={slides} />
         </div>
         <div>
         <p> about us </p>
