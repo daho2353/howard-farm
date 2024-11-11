@@ -9,7 +9,12 @@ export interface Slide {
     url: string;
 }
 
-const AboutPage = () => {
+interface Props{
+    setPage: (page: string) => void;
+  }
+  
+
+const AboutPage = ({setPage}: Props): JSX.Element => {
     const slides: Slide[] = [
         {url: Hero},
         {url: Home},
@@ -25,6 +30,7 @@ const AboutPage = () => {
         <div>
         <h2> about us </h2>
         <p> Welcome to Howard Farm! Since 2022, we've been dedicated to growing fresh, quality produce and sharing the flavors of our heritage with our community. At Howard Farm, we not only cultivate our own fruits, vegetables, and herbs, but we also use them to create delicious, homemade recipes inspired by a lineage of skilled chefs and cooks in our family. Each product we offer is crafted with care, combining generations of culinary expertise with the freshest ingredients straight from our fields. Join us in celebrating the art of homegrown food and family-inspired cooking!</p>
+        <button onClick={() => setPage("Shop")}> Go to Shop →</button> 
         </div>    
     </div>
       )

@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import NavIcon from './img/icon.png';
 import AboutPage from './components/AboutPage';
+import ContactPage from './components/ContactPage';
 
 const App = () => {
   const[currentPage, setPage] = useState<string>('About');
@@ -9,11 +10,15 @@ const App = () => {
   const renderPage = (): JSX.Element => {
     if (currentPage === "About")
     {
-      return <AboutPage/>
+      return <AboutPage setPage={setPage}/>
     }
-    else
+    else if (currentPage === "Shop")
     {
-      return <p> placeholder </p>
+      return <p> placeholder - Shop </p>
+    }
+    else if (currentPage === "Contact")
+    {
+      return <ContactPage/>
     }
     return <></>
   };
