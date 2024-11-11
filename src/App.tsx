@@ -4,7 +4,19 @@ import NavIcon from './img/icon.png';
 import AboutPage from './components/AboutPage';
 
 const App = () => {
-  const[currentPage, setPage] = useState<string>('Home');
+  const[currentPage, setPage] = useState<string>('About');
+
+  const renderPage = (): JSX.Element => {
+    if (currentPage === "About")
+    {
+      return <AboutPage/>
+    }
+    else
+    {
+      return <p> placeholder </p>
+    }
+    return <></>
+  };
 
   return (
     <div className="App">
@@ -16,7 +28,7 @@ const App = () => {
           <button onClick = {() => setPage("Contact")}> Contact Us </button>
         </nav>
       </header>
-      <AboutPage/>
+      <div> {renderPage()} </div>
     </div>
   );
 }
