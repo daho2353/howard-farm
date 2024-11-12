@@ -3,6 +3,7 @@ import { useState } from 'react';
 import NavIcon from './img/icon.png';
 import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
+import StorePage from './components/StorePage';
 
 const App = () => {
   const[currentPage, setPage] = useState<string>('About');
@@ -14,7 +15,7 @@ const App = () => {
     }
     else if (currentPage === "Shop")
     {
-      return <p> placeholder - Shop </p>
+      return <StorePage/>
     }
     else if (currentPage === "Contact")
     {
