@@ -9,10 +9,12 @@ export interface Product{ // placeholder product typing until backend is created
     price: number;
     imageURL: string;
     visible: boolean;
+    localPickupOnly: boolean;
 }
 
 const StorePage = () => {
     const [search, setSearch] = useState<string>("");
+    const [localToggle, setLocalToggle] = useState<boolean>(true);
 
     const SearchProduct = (event: React.ChangeEvent<HTMLInputElement>):void => {
         setSearch(event.target.value.toLowerCase());
@@ -22,8 +24,20 @@ const StorePage = () => {
         product.name.toLowerCase().includes(search)
     );
 
+    const handleCheckboxChange = () => {
+        setLocalToggle(prevState => !prevState);
+    }
+
     return(
         <div>
+            <label>
+                <input 
+                    type="checkbox"
+                    checked={localToggle}
+                    onChange={handleCheckboxChange}
+                />
+                Show items for Local Pickup only
+            </label>
             <p>Search for item: <input onChange={SearchProduct} /></p>
             {filteredProducts.map(product => (
                 <ProductCard product={product} key={product.name} />

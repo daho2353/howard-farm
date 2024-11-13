@@ -10,6 +10,7 @@ export const products: Product[] = [
         price: 5.99,
         imageURL: Pepper,
         visible: false,
+        localPickupOnly: false,
       },
       {
         name: 'Fatali Salsa',
@@ -17,6 +18,7 @@ export const products: Product[] = [
         price: 9.99,
         imageURL: Salsa,
         visible: false,
+        localPickupOnly: false,
       },
       {
         name: 'Pesto',
@@ -24,5 +26,6 @@ export const products: Product[] = [
         price: 7.99,
         imageURL: Pesto,
         visible: false,
+        localPickupOnly: true,
       }
 ];
