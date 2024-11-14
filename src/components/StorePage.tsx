@@ -21,7 +21,7 @@ const StorePage = () => {
       }
     
     const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes(search)
+        product.name.toLowerCase().includes(search) && (localToggle || !product.localPickupOnly)
     );
 
     const handleCheckboxChange = () => {

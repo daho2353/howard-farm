@@ -30,8 +30,9 @@ const App = () => {
       <img src={NavIcon} id="header-icon" height="175px" alt="profile image"/> 
         <nav>
           <button onClick = {() => setPage('About')}> About Us </button>
-          <button onClick = {() => setPage('Shop')}> Shop </button>
           <button onClick = {() => setPage("Contact")}> Contact Us </button>
+          <button onClick = {() => setPage('Shop')}> Shop </button>
+          <button onClick = {() => setPage('Checkout')}> Check Out </button>
         </nav>
       </header>
       <div> {renderPage()} </div>
