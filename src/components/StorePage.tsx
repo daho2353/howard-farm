@@ -12,7 +12,11 @@ export interface Product{ // placeholder product typing until backend is created
     localPickupOnly: boolean;
 }
 
-const StorePage = () => {
+interface StoreProps {
+    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
+}
+
+const StorePage: React.FC<StoreProps> = ({setCart}) => {
     const [search, setSearch] = useState<string>("");
     const [localToggle, setLocalToggle] = useState<boolean>(true);
 
@@ -28,6 +32,10 @@ const StorePage = () => {
         setLocalToggle(prevState => !prevState);
     }
 
+    const addToCart = (products: Product) => {
+        setCart((prevCart: Product[]) => [...prevCart, products]);
+    };
+
     return(
         <div>
             <label>
@@ -40,9 +48,9 @@ const StorePage = () => {
             </label>
             <p>Search for item: <input onChange={SearchProduct} /></p>
             {filteredProducts.map(product => (
-                <ProductCard product={product} key={product.name} />
+                <ProductCard addToCart={() => addToCart(product)} product={product} key={product.name} />
             ))}
-        </div>
+        </div> 
 
     ) 
 }

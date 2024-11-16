@@ -3,10 +3,12 @@ import { useState } from 'react';
 import NavIcon from './img/icon.png';
 import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
-import StorePage from './components/StorePage';
+import StorePage, { Product } from './components/StorePage';
+import ShoppingCart from './components/shoppingCart';
 
 const App = () => {
   const[currentPage, setPage] = useState<string>('About');
+  const[cart, setCart] = useState<Product[]>([]);
 
   const renderPage = (): JSX.Element => {
     if (currentPage === "About")
@@ -15,13 +17,13 @@ const App = () => {
     }
     else if (currentPage === "Shop")
     {
-      return <StorePage/>
+      return <StorePage setCart={setCart}/>
     }
     else if (currentPage === "Contact")
     {
       return <ContactPage/>
     }
-    return <></>
+    return <> <ShoppingCart cart={cart} setCart={setCart}/> </>
   };
 
   return (

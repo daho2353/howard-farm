@@ -3,9 +3,10 @@ import { Product } from "./StorePage";
 
 interface Props {
     product : Product;
+    addToCart : (product:Product) => void; 
 }
 
-const ProductCard: React.FC<Props> = ({product}) => (
+const ProductCard: React.FC<Props> = ({product, addToCart}) => (
     <div className="product-card">
         <img src={product.imageURL} className="product-image" />
         <p className="product-name">{product.name}</p>
@@ -14,6 +15,7 @@ const ProductCard: React.FC<Props> = ({product}) => (
         <p>
             {product.localPickupOnly ? 'item is for local pickup only' : 'item can be shipped to the US'}
         </p>
+        <button onClick={() => addToCart(product)}> Add to Cart </button>
     </div>
 )
 
