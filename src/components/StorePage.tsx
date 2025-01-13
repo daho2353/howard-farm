@@ -10,6 +10,7 @@ export interface Product{ // placeholder product typing until backend is created
     imageURL: string;
     visible: boolean;
     localPickupOnly: boolean;
+    quantityInCart: 0;
 }
 
 interface StoreProps {
@@ -32,7 +33,7 @@ const StorePage: React.FC<StoreProps> = ({setCart}) => {
         setLocalToggle(prevState => !prevState);
     }
 
-    const addToCart = (products: Product) => {
+    const addToCart = (products: Product) => { //need to edit this function so it adds the item to the cart if it isnt there, and increases the quantity if it is there
         setCart((prevCart: Product[]) => [...prevCart, products]);
     };
 

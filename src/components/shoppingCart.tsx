@@ -11,7 +11,7 @@ interface Props{
 
 const ShoppingCart: React.FC<Props> = ({cart, setCart}) => {
     
-    const removeFromCart = (products: Product) => {
+    const removeFromCart = (products: Product) => { //edit this function to reduce quantity variable that needs to be added still
             setCart((prevCart: Product[]) => {
                 const index = prevCart.findIndex(cartItem => cartItem.name === products.name);
                 if (index !== -1) {

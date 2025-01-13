@@ -11,6 +11,7 @@ export const products: Product[] = [
         imageURL: Pepper,
         visible: false,
         localPickupOnly: false,
+        quantityInCart: 0,
       },
       {
         name: 'Fatali Salsa',
@@ -19,6 +20,7 @@ export const products: Product[] = [
         imageURL: Salsa,
         visible: false,
         localPickupOnly: false,
+        quantityInCart: 0,
       },
       {
         name: 'Pesto',
@@ -27,5 +29,6 @@ export const products: Product[] = [
         imageURL: Pesto,
         visible: false,
         localPickupOnly: true,
+        quantityInCart: 0,
       }
 ];
