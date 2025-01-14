@@ -16,6 +16,7 @@ const ShoppingCart: React.FC<Props> = ({cart, setCart}) => {
                 const index = prevCart.findIndex(cartItem => cartItem.name === products.name);
                 if (index !== -1) {
                     // Remove the item at the found index
+                    products.quantityInCart = 0; 
                     return [...prevCart.slice(0, index), ...prevCart.slice(index + 1)];
                 }
                 return prevCart; // If not found, return the cart unchanged

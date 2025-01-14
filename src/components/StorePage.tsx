@@ -10,7 +10,8 @@ export interface Product{ // placeholder product typing until backend is created
     imageURL: string;
     visible: boolean;
     localPickupOnly: boolean;
-    quantityInCart: 0;
+    quantityInCart: number;
+    stock: number; 
 }
 
 interface StoreProps {
@@ -33,8 +34,24 @@ const StorePage: React.FC<StoreProps> = ({setCart}) => {
         setLocalToggle(prevState => !prevState);
     }
 
-    const addToCart = (products: Product) => { //need to edit this function so it adds the item to the cart if it isnt there, and increases the quantity if it is there
-        setCart((prevCart: Product[]) => [...prevCart, products]);
+    const addToCart = (products: Product) => {
+        setCart((prevCart: Product[]) => {
+            // Check if the product is already in the cart
+            const productIndex = prevCart.findIndex(cartItem => cartItem.name === products.name);
+    
+            if (productIndex !== -1) {
+                // If product exists, increment quantityInCart
+                const updatedCart = [...prevCart];
+                updatedCart[productIndex] = {
+                    ...updatedCart[productIndex],
+                    quantityInCart: (updatedCart[productIndex].quantityInCart || 0) + 1,
+                };
+                return updatedCart;
+            } else {
+                // If product does not exist, add it with quantityInCart set to 1
+                return [...prevCart, { ...products, quantityInCart: 1 }];
+            }
+        });
     };
 
     return(
