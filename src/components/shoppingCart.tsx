@@ -24,11 +24,36 @@ const ShoppingCart: React.FC<Props> = ({cart, setCart}) => {
         
     };
 
+    const decreaseCartQuantity = (product: Product) => {
+        setCart((prevCart: Product[]) => {
+            return prevCart.map((cartItem) => {
+                if (cartItem.name === product.name) {
+                    if (cartItem.quantityInCart <= 1) {
+                        removeFromCart(product);
+                    }
+                    return { ...cartItem, quantityInCart: cartItem.quantityInCart - 1 };
+                }
+                return cartItem; // Return unchanged items
+            })
+        });
+    };
+
+    const increaseCartQuantity = (product: Product) => {
+        setCart((prevCart: Product[]) => {
+            return prevCart.map((cartItem) => {
+                if (cartItem.name === product.name) { //next need to implement stock into the product then check if this number is less than the available stock
+                    return { ...cartItem, quantityInCart: cartItem.quantityInCart + 1 };
+                }
+                return cartItem;
+            })
+        });
+    };
+
    return (
     <div>
         {cart.map(product => (
             <div>
-                <CartCard removeFromCart={() => removeFromCart(product)} product={product} key={product.name} />
+                <CartCard removeFromCart={() => removeFromCart(product)} decreaseCartQuantity={() => decreaseCartQuantity(product)} increaseCartQuantity={() => increaseCartQuantity(product)} product={product} key={product.name} />
             </div>    
 
     ))}
