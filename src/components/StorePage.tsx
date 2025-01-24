@@ -48,7 +48,7 @@ const StorePage: React.FC<StoreProps> = ({cart, setCart}) => {
                     updatedCart[productIndex] = {
                         ...updatedCart[productIndex],
                         quantityInCart: (updatedCart[productIndex].quantityInCart || 0) + 1,
-                    };
+                    }; //could possibly add the check here for whether quanity will push over stock and return prevCart otherwise
                     return updatedCart;
                 } else {
                     // If product does not exist, add it with quantityInCart set to 1
