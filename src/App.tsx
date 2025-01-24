@@ -17,7 +17,7 @@ const App = () => {
     }
     else if (currentPage === "Shop")
     {
-      return <StorePage setCart={setCart}/>
+      return <StorePage cart={cart} setCart={setCart}/>
     }
     else if (currentPage === "Contact")
     {
