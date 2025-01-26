@@ -1,0 +1,12 @@
+button:disabled, 
+button.disabled-button {
+    background-color: #cccccc; /* Light grey */
+    color: #666666; /* Darker grey text */
+    cursor: not-allowed; /* Indicate it cannot be clicked */
+    opacity: 0.7; /* Slightly transparent */
+}
+
+button:not(:disabled) {
+    background-color: #636c75; /* Your active button color */
+    color: #ffffff; /* Text color for active buttons */
+}
