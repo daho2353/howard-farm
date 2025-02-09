@@ -11,7 +11,7 @@ interface Props{
 
 const ShoppingCart: React.FC<Props> = ({cart, setCart}) => {
     
-    const removeFromCart = (products: Product) => { //edit this function to reduce quantity variable that needs to be added still
+    const removeFromCart = (products: Product) => { 
             setCart((prevCart: Product[]) => {
                 const index = prevCart.findIndex(cartItem => cartItem.name === products.name);
                 if (index !== -1) {
@@ -41,7 +41,7 @@ const ShoppingCart: React.FC<Props> = ({cart, setCart}) => {
     const increaseCartQuantity = (product: Product) => {
         setCart((prevCart: Product[]) => {
             return prevCart.map((cartItem) => {
-                if (cartItem.name === product.name) { //next need to implement stock into the product then check if this number is less than the available stock
+                if (cartItem.name === product.name) { 
                     return { ...cartItem, quantityInCart: cartItem.quantityInCart + 1 };
                 }
                 return cartItem;
