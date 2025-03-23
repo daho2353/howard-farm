@@ -7,39 +7,45 @@ import StorePage, { Product } from './components/StorePage';
 import ShoppingCart from './components/shoppingCart';
 
 const App = () => {
-  const[currentPage, setPage] = useState<string>('About');
-  const[cart, setCart] = useState<Product[]>([]);
+  const [currentPage, setPage] = useState<string>('About');
+  const [cart, setCart] = useState<Product[]>([]);
 
   const renderPage = (): JSX.Element => {
-    if (currentPage === "About")
-    {
-      return <AboutPage setPage={setPage}/>
+    if (currentPage === "About") {
+      return <AboutPage setPage={setPage} />;
+    } else if (currentPage === "Shop") {
+      return <StorePage cart={cart} setCart={setCart} />;
+    } else if (currentPage === "Contact") {
+      return <ContactPage />;
     }
-    else if (currentPage === "Shop")
-    {
-      return <StorePage cart={cart} setCart={setCart}/>
-    }
-    else if (currentPage === "Contact")
-    {
-      return <ContactPage/>
-    }
-    return <> <ShoppingCart cart={cart} setCart={setCart}/> </>
+    // Default to Checkout page, displaying the shopping cart
+    return (
+      <div>
+        <ShoppingCart cart={cart} setCart={setCart} />
+      </div>
+    );
   };
 
   return (
     <div className="App">
       <header>
-      <img src={NavIcon} id="header-icon" height="175px" alt="profile image"/> 
+        <img
+          src={NavIcon}
+          id="header-icon"
+          height="175px"
+          alt="Navigation Icon"
+        />
         <nav>
-          <button onClick = {() => setPage('About')}> About Us </button>
-          <button onClick = {() => setPage("Contact")}> Contact Us </button>
-          <button onClick = {() => setPage('Shop')}> Shop </button>
-          <button onClick = {() => setPage('Checkout')}> Check Out </button>
+          <button onClick={() => setPage('About')}>About Us</button>
+          <button onClick={() => setPage('Contact')}>Contact Us</button>
+          <button onClick={() => setPage('Shop')}>Shop</button>
+          <button onClick={() => setPage('Checkout')}>Check Out</button>
         </nav>
       </header>
-      <div> {renderPage()} </div>
+      <main>{renderPage()}</main>
     </div>
   );
-}
+};
 
 export default App;
+
