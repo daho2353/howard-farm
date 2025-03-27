@@ -24,6 +24,7 @@ const ImageSlider: React.FC<Props> = ({ slides }) => {
   return (
     <div className="slider">
       <button className="arrow left-arrow" onClick={goToPrevious} aria-label="Previous Slide">
+      <span aria-hidden="true">❰</span>
         ❰
       </button>
       <div className="slide">
@@ -34,6 +35,7 @@ const ImageSlider: React.FC<Props> = ({ slides }) => {
         />
       </div>
       <button className="arrow right-arrow" onClick={goToNext} aria-label="Next Slide">
+      <span aria-hidden="true">❰</span>
         ❱
       </button>
     </div>

@@ -14,16 +14,28 @@ header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1200px; /* Optional: center content within max width */
+  max-width: 1200px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+.logo-container {
+  max-width: 300px;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  flex-wrap: wrap;
 }
 
 button {
@@ -42,6 +54,24 @@ button:hover {
   background-color: rgb(225, 235, 245);
 }
 
+/* Improve logo alignment on desktop screens only */
+@media (min-width: 769px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-container {
+    max-width: 150px; /* Reduce size for better visual balance */
+    text-align: left;
+  }
+
+  nav {
+    justify-content: flex-end;
+  }
+}
+
 /* Responsive styling for mobile screens */
 @media (max-width: 768px) {
   .App {
@@ -50,19 +80,27 @@ button:hover {
 
   header {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 10px;
+  }
+
+  .logo-container {
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
   }
 
   nav {
     justify-content: center;
-    flex-wrap: wrap;
   }
 
   button {
     font-size: 1em;
     padding: 8px 16px;
+    width: 100%;
+    max-width: 300px;
   }
+  
 }
 
 

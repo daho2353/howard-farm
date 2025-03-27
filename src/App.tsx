@@ -11,30 +11,25 @@ const App = () => {
   const [cart, setCart] = useState<Product[]>([]);
 
   const renderPage = (): JSX.Element => {
-    if (currentPage === "About") {
-      return <AboutPage setPage={setPage} />;
-    } else if (currentPage === "Shop") {
-      return <StorePage cart={cart} setCart={setCart} />;
-    } else if (currentPage === "Contact") {
-      return <ContactPage />;
+    switch (currentPage) {
+      case 'About':
+        return <AboutPage setPage={setPage} />;
+      case 'Shop':
+        return <StorePage cart={cart} setCart={setCart} />;
+      case 'Contact':
+        return <ContactPage />;
+      case 'Checkout':
+      default:
+        return <ShoppingCart cart={cart} setCart={setCart} />;
     }
-    // Default to Checkout page, displaying the shopping cart
-    return (
-      <div>
-        <ShoppingCart cart={cart} setCart={setCart} />
-      </div>
-    );
   };
 
   return (
     <div className="App">
-      <header>
-        <img
-          src={NavIcon}
-          id="header-icon"
-          height="175px"
-          alt="Navigation Icon"
-        />
+      <header className="app-header">
+        <div className="logo-container">
+          <img src={NavIcon} alt="Howard's Farm Logo" className="logo" />
+        </div>
         <nav>
           <button onClick={() => setPage('About')}>About Us</button>
           <button onClick={() => setPage('Contact')}>Contact Us</button>
