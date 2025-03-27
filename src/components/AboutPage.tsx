@@ -23,7 +23,7 @@ const AboutPage: React.FC<Props> = ({ setPage }) => {
   ];
 
   return (
-    <div>
+    <div className="about-page">
       <div className="slider-container">
         <ImageSlider slides={slides} />
       </div>
@@ -39,3 +39,4 @@ const AboutPage: React.FC<Props> = ({ setPage }) => {
 };
 
 export default AboutPage;
+

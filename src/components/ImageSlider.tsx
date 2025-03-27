@@ -10,33 +10,35 @@ const ImageSlider: React.FC<Props> = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+    );
   };
 
   const goToNext = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
     <div className="slider">
-      <div className="left-arrow" onClick={goToPrevious}>
+      <button className="arrow left-arrow" onClick={goToPrevious} aria-label="Previous Slide">
         ❰
-      </div>
-      <div className="right-arrow" onClick={goToNext}>
-        ❱
-      </div>
+      </button>
       <div className="slide">
         <img
           src={slides[currentIndex].url}
-          alt={slides[currentIndex].alt || ''}
+          alt={slides[currentIndex].alt}
+          className="slide-image"
         />
       </div>
+      <button className="arrow right-arrow" onClick={goToNext} aria-label="Next Slide">
+        ❱
+      </button>
     </div>
   );
 };
 
 export default ImageSlider;
+
