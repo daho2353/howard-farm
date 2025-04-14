@@ -1,50 +1,73 @@
-name: Azure Static Web Apps CI/CD
+name: Build and deploy Node.js app to Azure Web App - howards-farm-app
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  build:
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    permissions:
+      contents: read # Required for actions/checkout
+
     steps:
-      # Checkout code without persisting credentials or submodules
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          submodules: false
-          lfs: false
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Build And Deploy
-        id: builddeploy
-        uses: Azure/static-web-apps-deploy@v1
+      - name: 🔧 Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_OCEAN_05648161E }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for GitHub integrations (i.e. PR comments)
-          action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/"       # App source code path
-          api_location: ""        # API source code path - optional
-          output_location: "build" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          node-version: '20.x'
 
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+      - name: 📦 npm install, build, and test (backend-api)
+        working-directory: backend-api
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+
+      - name: 📦 Zip backend-api for deployment
+        run: cd backend-api && zip -r ../release.zip .
+
+      - name: ⬆️ Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app
+          path: release.zip
+
+  deploy:
     runs-on: ubuntu-latest
-    name: Close Pull Request Job
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@v1
+      - name: 📥 Download artifact from build job
+        uses: actions/download-artifact@v4
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PROUD_OCEAN_05648161E }}
-          action: "close"
+          name: node-app
+
+      - name: 📂 Unzip artifact for deployment
+        run: unzip release.zip
+
+      - name: 🔐 Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: 🚀 Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'howards-farm-app'
+          slot-name: 'Production'
+          package: .
 
