@@ -42,7 +42,8 @@ const AdminPage: React.FC = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [showArchived]);
+  }, [showArchived, fetchProducts]);
+  
 
   const handleChange = (
     id: number | undefined,
