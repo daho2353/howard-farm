@@ -68,7 +68,7 @@ jobs:
         with:
           app-name: 'howards-farm-app'
           slot-name: 'Production'
-          package: .
+          package: release.zip
 
 
           
