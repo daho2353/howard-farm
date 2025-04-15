@@ -23,6 +23,11 @@ header {
   max-width: 300px;
   flex-shrink: 0;
 }
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 .logo {
   width: 100%;

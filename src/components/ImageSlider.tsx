@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Slide } from './AboutPage';
+import { Slide } from './HomePage';
 import './imageSlider.css';
 
 interface Props {
