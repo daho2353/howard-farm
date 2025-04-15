@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend-api
 
     steps:
       - uses: actions/checkout@v4
@@ -20,22 +23,14 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: backend-api
 
-      - name: Copy backend files to root for packaging
-        run: |
-          mkdir deploy
-          cp -r backend-api/* deploy/
+      - name: Zip artifact for deployment
+        run: zip -r release.zip .
 
-      - name: Add dummy root file (optional)
-        run: echo "Howard's Farm backend" > deploy/startup.txt
+      - name: Move ZIP to root for upload
+        run: mv release.zip ../release.zip
 
-      - name: Zip for deployment
-        run: |
-          cd deploy
-          zip -r ../release.zip .
-
-      - name: Upload artifact
+      - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
@@ -52,12 +47,12 @@ jobs:
       contents: read
 
     steps:
-      - name: Download artifact
+      - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: node-app
 
-      - name: Unzip artifact
+      - name: Unzip artifact for deployment
         run: unzip release.zip
 
       - name: Login to Azure
