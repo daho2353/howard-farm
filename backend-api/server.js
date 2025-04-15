@@ -11,6 +11,11 @@ const authRoutes = require("./Auth");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://howardsfarm.org",
+  "https://howards-farm-app-c0cmbderahfva9er.westus2-01.azurewebsites.net"
+];
 
 // 👇 Add this BEFORE session middleware
 if (process.env.NODE_ENV === "production") {
@@ -19,7 +24,13 @@ if (process.env.NODE_ENV === "production") {
 
 // Middleware
 app.use(cors({
-  origin: "http://localhost:3000", // Your frontend origin
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
