@@ -32,6 +32,7 @@ jobs:
         with:
           name: node-app
           path: release.zip
+        working-directory: backend-api  # ✅ Ensures the zip is found and uploaded
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,6 +67,7 @@ jobs:
           app-name: 'howards-farm-app'
           slot-name: 'Production'
           package: .
+
 
 
           
