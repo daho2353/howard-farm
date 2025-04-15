@@ -91,18 +91,24 @@ app.post("/create-payment-intent", async (req, res) => {
 // Get active products (non-archived)
 app.get("/products", async (req, res) => {
   try {
+    console.log("🔌 Attempting DB connection...");
     const pool = await poolPromise;
+    console.log("✅ Connected to DB");
+
     const result = await pool.request().query(`
       SELECT * FROM Products 
       WHERE IsArchived = 0 
       ORDER BY DisplayOrder ASC
     `);
+
     res.json(result.recordset);
   } catch (err) {
-    console.error("SQL error:", err.message);
+    console.error("❌ SQL error:", err.message);
+    console.error("🧠 Full stack:", err.stack);
     res.status(500).send("Failed to fetch products");
   }
 });
+
 
 app.get("/products/all", isAuthenticated, async (req, res) => {
   try {
