@@ -27,12 +27,14 @@ jobs:
       - name: Zip artifact for deployment
         run: zip -r release.zip .
 
+      - name: Move ZIP to root for upload
+        run: mv release.zip ../release.zip
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: release.zip
-        working-directory: backend-api  # ✅ Ensures the zip is found and uploaded
 
   deploy:
     runs-on: ubuntu-latest
@@ -67,6 +69,7 @@ jobs:
           app-name: 'howards-farm-app'
           slot-name: 'Production'
           package: .
+
 
 
 
