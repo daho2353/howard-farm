@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "./AdminPage.css";
 import apiBaseUrl from "../config";
+
 
 interface Product {
   productId?: number;
@@ -19,12 +20,11 @@ const AdminPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [showArchived, setShowArchived] = useState(false);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     const endpoint = showArchived
       ? `${apiBaseUrl}/products/all`
       : `${apiBaseUrl}/products`;
   
-
     const res = await axios.get(endpoint, { withCredentials: true });
     const data = res.data.map((p: any) => ({
       productId: p.ProductId,
@@ -38,11 +38,13 @@ const AdminPage: React.FC = () => {
       isArchived: p.IsArchived === true,
     }));
     setProducts(data.sort((a: Product, b: Product) => a.displayOrder - b.displayOrder));
-  };
+  }, [showArchived]);
+  
 
   useEffect(() => {
     fetchProducts();
-  }, [showArchived, fetchProducts]);
+  }, [fetchProducts]);
+  
   
 
   const handleChange = (
