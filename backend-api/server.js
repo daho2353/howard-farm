@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 3001;
 const allowedOrigins = [
   "http://localhost:3000",
   "https://howardsfarm.org",
+  "https://www.howardsfarm.org",
   "https://howards-farm-app-c0cmbderahfva9er.westus2-01.azurewebsites.net"
 ];
 
