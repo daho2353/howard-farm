@@ -1,3 +1,11 @@
+
+## 📦 Deployment Instructions
+
+See [`DEPLOYMENT.md`](DEPLOYMENT.md) for full GitHub/Azure deployment steps, version tagging, rollback instructions, and protection-aware workflows.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
