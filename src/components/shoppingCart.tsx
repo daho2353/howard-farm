@@ -123,25 +123,25 @@ const ShoppingCart: React.FC<Props> = ({ cart, setCart, user, setPage, setLastOr
     }
   }, [user, useAccountAddress]);
 
-  const handlePlaceSelect = (placeId: string, description: string) => {
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ placeId }, (results, status) => {
-      if (status === "OK" && results && results.length > 0) {
-        const address = results[0].address_components;
-        const get = (type: string) => address.find((a) => a.types.includes(type))?.long_name || "";
+  //const handlePlaceSelect = (placeId: string, description: string) => {
+   // const geocoder = new window.google.maps.Geocoder();
+    //geocoder.geocode({ placeId }, (results, status) => {
+     // if (status === "OK" && results && results.length > 0) {
+      //  const address = results[0].address_components;
+       // const get = (type: string) => address.find((a) => a.types.includes(type))?.long_name || "";
 
-        setShipping((prev) => ({
-          ...prev,
-          street: `${get("street_number")} ${get("route")}`,
-          city: get("locality") || get("sublocality") || "",
-          state: get("administrative_area_level_1"),
-          zip: get("postal_code"),
-        }));
-        setStreetInput(description);
-        setSuggestions([]);
-      }
-    });
-  };
+        //setShipping((prev) => ({
+          //...prev,
+          //street: `${get("street_number")} ${get("route")}`,
+          //city: get("locality") || get("sublocality") || "",
+          //state: get("administrative_area_level_1"),
+          //zip: get("postal_code"),
+        //}));
+        //setStreetInput(description);
+        //setSuggestions([]);
+      //}
+    //});
+  //};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
