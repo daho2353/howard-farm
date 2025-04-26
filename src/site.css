@@ -1,0 +1,123 @@
+/* Google Font for header/serif text is loaded in public/index.html */
+
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fffaf2; /* Soft warm background */
+  color: #3a2e1f; /* Natural text */
+  line-height: 1.6;
+}
+
+/* Use sans-serif utility class where needed for buttons or controls */
+.sans-serif {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* ========== HEADER & NAV ========== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#header-icon {
+  height: 80px;
+  width: auto;
+}
+
+nav {
+  display: flex;
+  gap: 14px;
+}
+
+nav button {
+  padding: 10px 16px;
+  background-color: #4a5a63;
+  color: white;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+nav button:hover {
+  background-color: #6a7a83;
+  transform: translateY(-1px);
+}
+
+/* ========== SLIDER ========== */
+.slider-container {
+  max-width: 100%;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+/* ========== ABOUT SECTION ========== */
+.about-section {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.about-section h2 {
+  font-size: 36px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.about-section p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #4b3e34;
+}
+
+.about-section button {
+  padding: 10px 20px;
+  background-color: #4a5a63;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.about-section button:hover {
+  background-color: #6a7a83;
+}
+
+/* ========== UTILITY ELEMENTS ========== */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+input[type="text"], input[type="email"] {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+
